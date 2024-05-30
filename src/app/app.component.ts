@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'scrum-demo';
+  voornaam = 'fred';
+
+  verandernaam(){
+    console.log("naam wordt veranderd");
+    this.voornaam = 'joost'
+  }
 }

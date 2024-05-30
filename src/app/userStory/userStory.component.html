@@ -1,0 +1,21 @@
+<hr>
+{{userStory1.title}}<br>
+{{userStory1.description}}
+<hr>
+{{userStory2.title}}<br>
+{{userStory2.description}}
+<hr>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Description</th>
+    </tr>
+
+    <tr *ngFor="let userStory of userStories$ | async">
+        <td>{{userStory.id}}</td>
+        <td>{{userStory.title}}</td>
+        <td>{{userStory.description}}</td>
+    </tr>
+</table>

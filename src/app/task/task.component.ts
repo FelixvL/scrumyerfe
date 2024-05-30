@@ -26,7 +26,7 @@ export class TaskComponent {
     this.taskService.toTheBackend().subscribe(
          resp => {
               console.log(resp);
-              this.taken = resp;
+              //this.taken = resp;
          }
     );
 }

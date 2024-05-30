@@ -1,13 +1,8 @@
-<project-tile></project-tile>
-{{title}}
+<nav>
+    <ul>
+        <a routerLink="/task" routerLinkActive="active" ariaCurrentWhenActive="page">Task overzicht</a>
+        <a routerLink="/project" routerLinkActive="active" ariaCurrentWhenActive="page">Project overzicht</a>
+    </ul>
+</nav>
 
-<h1>{{voornaam}}</h1>
-<button (click)="verandernaam()">klik hier</button>
-
-<input [(ngModel)]="voornaam">
-<hr>
-<task-selector></task-selector>
-
-<task-selector></task-selector>
-<task-selector></task-selector>
-<task-selector></task-selector>
+<router-outlet></router-outlet>

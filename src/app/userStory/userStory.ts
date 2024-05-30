@@ -1,6 +1,5 @@
-export class UserStory {
-  id: number = 0;
-  naam = '';
-  title: string = '';
-  description: string = '';
+export interface UserStory {
+  id: number;
+  title: string;
+  description: string;
 }

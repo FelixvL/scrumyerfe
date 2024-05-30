@@ -1,27 +1,41 @@
-import { Injectable } from '@angular/core';
-import { UserStory} from "./userStory";
-import { Observable } from "rxjs";
+import { Injectable, inject } from '@angular/core';
+import { UserStory } from "./userStory";
+import { BehaviorSubject, Observable } from "rxjs";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class UserStoryService {
+  private userStories = new BehaviorSubject<UserStory[]>([]);
+  public userStories$: Observable<UserStory[]> = this.userStories.asObservable();
 
-  constructor(private http: HttpClient) {
-  }
+  private http = inject(HttpClient);
 
-  toTheBackEnd():Observable<UserStory[]>{
-    return this.http.get<UserStory[]>("http://localhost:8082/getUserStory")
+  refreshUserstories() {
+    this.http.get<UserStory[]>("http://localhost:8082/userstories/")
+      .subscribe(userStories => {
+        this.userStories.next(userStories);
+      })
   }
 
   getUserStory(id: number): UserStory {
-    let userStory: UserStory = new UserStory;
-      if (id === 1) {
-        userStory.title = "Projecten maken";
-        userStory.description = "De user probeert een project te maken en heeft hierbij...";
-      } else if (id === 2) {
-        userStory.title = "Project afronden";
-        userStory.description = "De user probeert een project af te maken en daarbij...";
+    if (id === 1) {
+      return {
+        id: 1,
+        title: "Projecten maken",
+        description: "De user probeert een project te maken en heeft hierbij..."
       }
-      return userStory;
+    } else if (id === 2) {
+      return {
+        id: 2,
+        title: "Project afronden",
+        description: "De user probeert een project af te maken en daarbij..."
+      }
+    }
+
+    return {
+      id: -1,
+      title: "Onbekende Userstory",
+      description: "...",
+    };
   }
 }

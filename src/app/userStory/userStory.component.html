@@ -1,0 +1,10 @@
+<hr>
+<button (click)="executeRest()">Switch Users</button>
+<hr>
+{{userStory1.title}}<br>
+{{userStory1.description}}
+<hr>
+{{userStory2.title}}<br>
+{{userStory2.description}}
+<hr>
+<div *ngFor="let userStory of lijst">{{userStory.naam}}</div>
